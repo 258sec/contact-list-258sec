@@ -1,16 +1,19 @@
 import { useEffect } from "react";
 import { useContacts } from "../context/ContactContext";
 import ContactCard from "../Componentes/ContactCard";
-import { useNavigate } from "react-router-dom"; // 👈 añadir
+import { useNavigate } from "react-router-dom"; 
 
+//Sacamos los contactos a traves del atajo useContacts
 function Contacts() {
   const { state, getContacts } = useContacts();
-  const navigate = useNavigate(); // 👈 añadir
-
+  const navigate = useNavigate(); 
+//Cargamos los contactos 
   useEffect(() => {
     getContacts();
   }, []);
 
+
+// pestaña principal, parte grafica "/"
   return (
     <div className="container mt-3">
       <div className="d-flex justify-content-between align-items-center mb-3">
@@ -20,7 +23,7 @@ function Contacts() {
         </button>
       </div>
       {state.contacts.length === 0 ? (
-        <p className="text-muted">No hay contactos aún. ¡Añade uno!</p>
+        <p className="text-muted">No hay contactos aún. Añade uno.</p>
       ) : (
         state.contacts.map((contact) => (
           <ContactCard key={contact.id} contact={contact} />

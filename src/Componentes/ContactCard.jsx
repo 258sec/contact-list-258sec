@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useContacts } from "../context/ContactContext";
-
+//cargamos las cards con sus opciones editar y borrar
 function ContactCard({ contact }) {
   const { deleteContact } = useContacts();
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ function ContactCard({ contact }) {
   const handleEdit = () => {
     navigate("/add-contact", { state: contact });
   };
-
+//parteg grafica contacto
   return (
     <div className="card mb-3">
       <div className="card-body">

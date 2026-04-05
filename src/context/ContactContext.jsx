@@ -18,16 +18,19 @@ export function ContactProvider({ children }) {
 
  const getContacts = useCallback(async () => {
   try {
-    // 👉 Primero intentamos crear la agenda (si ya existe no pasa nada)
-    await fetch("https://playground.4geeks.com/contact/agendas/258sec", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-    });
+       // Comprobamos si la agenda existe
+    const checkResponse = await fetch("https://playground.4geeks.com/contact/agendas/258sec");
 
-    // 👉 Luego obtenemos los contactos
+    // Si no existe (404), la creamos
+    if (checkResponse.status === 404) {
+      await fetch("https://playground.4geeks.com/contact/agendas/258sec", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+    // Cargamos los contactos
     const response = await fetch("https://playground.4geeks.com/contact/agendas/258sec/contacts");
     const data = await response.json();
-    console.log("data:", data); // 👈 para ver la estructura exacta
     dispatch({
       type: "SAVE_CONTACTS",
       payload: data.contacts ?? [],
@@ -36,7 +39,7 @@ export function ContactProvider({ children }) {
     console.error(error);
   }
 }, []);
-
+//agregar contacto
   async function addContact(contact) {
     await fetch("https://playground.4geeks.com/contact/agendas/258sec/contacts", {
       method: "POST",
@@ -45,14 +48,14 @@ export function ContactProvider({ children }) {
     });
     getContacts();
   }
-
+//eliminar contacto
   async function deleteContact(id) {
     await fetch(`https://playground.4geeks.com/contact/agendas/258sec/contacts/${id}`, {
       method: "DELETE",
     });
     getContacts();
   }
-
+//actualizar contacto
   async function updateContact(id, updatedContact) {
     await fetch(`https://playground.4geeks.com/contact/agendas/258sec/contacts/${id}`, {
       method: "PUT",
@@ -68,7 +71,7 @@ export function ContactProvider({ children }) {
     </ContactContext.Provider>
   );
 }
-
+// creamos esta funcion para no tener que importar por separado en cada archivo
 export function useContacts() {
   return useContext(ContactContext);
 }
