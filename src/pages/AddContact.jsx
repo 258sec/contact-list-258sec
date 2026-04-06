@@ -43,10 +43,11 @@ function AddContact() {
   };
 
 
-  // 👇 UN SOLO handleSubmit, el correcto con validación
+
   const handleSubmit = (e) => {
     //evitamos que recargue el navegador por defecto 
     e.preventDefault();
+    //ejecuta la validacion
     const foundErrors = validate();
     //si hay errores se actualiza errors y salta el return (no avanza)
     if (Object.keys(foundErrors).length > 0) {
@@ -56,11 +57,14 @@ function AddContact() {
     //si no hay errores enviamos los datos
     setErrors({});
     const contactData = { name, email, phone };
+    //si location.state tiene info podremos editar
     if (contactToEdit) {
       updateContact(contactToEdit.id, contactData);
+      //sino añadimos contactos
     } else {
       addContact(contactData);
     }
+    //redirige a la pagina principal
     navigate("/");
   };
 

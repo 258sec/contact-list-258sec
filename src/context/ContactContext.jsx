@@ -21,7 +21,7 @@ export function ContactProvider({ children }) {
        // Comprobamos si la agenda existe
     const checkResponse = await fetch("https://playground.4geeks.com/contact/agendas/258sec");
 
-    // Si no existe (404), la creamos
+    // Si nos da error 404(not found), la creamos
     if (checkResponse.status === 404) {
       await fetch("https://playground.4geeks.com/contact/agendas/258sec", {
         method: "POST",
