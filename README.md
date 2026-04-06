@@ -1,16 +1,103 @@
-# React + Vite
+# 📇 Contact List - 258sec
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación web de gestión de contactos desarrollada con **React**. Permite crear, editar, visualizar y eliminar contactos conectándose a una API externa.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Funcionalidades
 
-## React Compiler
+* 📋 Mostrar lista de contactos desde la API
+* ➕ Crear nuevos contactos
+* ✏️ Editar contactos existentes
+* 🗑️ Eliminar contactos
+* 🔄 Actualización automática tras cada acción
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Tecnologías utilizadas
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* React
+* React Router DOM
+* Context API + useReducer
+* Bootstrap 5
+* Vite
+
+---
+
+## 📁 Estructura del proyecto
+
+```
+src/
+│
+├── Componentes/
+│   └── ContactCard.jsx
+│
+├── context/
+│   └── ContactContext.jsx
+│
+├── pages/
+│   ├── Contacts.jsx
+│   └── AddContact.jsx
+│
+├── App.jsx
+└── main.jsx
+```
+
+---
+
+## 🧠 Funcionamiento
+
+La aplicación utiliza **Context API** junto con `useReducer` para gestionar el estado global de los contactos.
+
+* `ContactContext.jsx` → Maneja toda la lógica (fetch, crear, borrar, actualizar)
+* `Contacts.jsx` → Carga y muestra la lista de contactos
+* `ContactCard.jsx` → Representa cada contacto individual
+* `AddContact.jsx` → Formulario reutilizable para crear y editar
+
+---
+
+## 🔗 API utilizada
+
+```
+https://playground.4geeks.com/contact/agendas/258sec/contacts
+```
+
+---
+
+## ▶️ Cómo ejecutar el proyecto
+
+1. Clonar el repositorio:
+
+```bash
+git clone https://github.com/258sec/contact-list-258sec.git
+```
+
+2. Entrar en el proyecto:
+
+```bash
+cd contact-list-258sec
+```
+
+3. Instalar dependencias:
+
+```bash
+npm install
+```
+
+4. Ejecutar la aplicación:
+
+```bash
+npm run dev
+```
+
+5. Abrir en el navegador:
+
+```
+http://localhost:5173
+```
+
+---
+
+## 👨‍💻 Autor
+
+258sec
